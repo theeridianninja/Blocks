@@ -1,0 +1,83 @@
+<!-- I was picturing some basic information about the system here, maybe some charts? -->
+<!-- For the API, literally just send os.freemem, os.loadavg, os.totalmem, os.cpus, and os.hostname all into an
+        object with the same names                                                                              -->
+<h1>Host Details</h1>
+
+<!-- All mod pages must include this EJS snippet -->
+<% if (!mods) {
+    mods = {}
+} %>
+<% if (!mods.systemInformation) {
+    var freemem = "3"
+    var totalmem = "4"
+    var loadavg = "25%"
+    var cpus = "4" %>
+
+<p class="warning"> Demo mode is active. Consult server documentation for more information. (ERR: NO_OS_MOD) </p>
+<% } else {
+    freemem = mods.systemInformation.freemem
+    totalmem = mods.systemInformation.totalmem
+    loadavg = mods.systemInformation.loadavg
+    cpus = mods.systemInformation.cpus
+
+}
+%>
+
+<p>System Memory: <%= freemem %>GiB out of <%= totalmem %>GiB available</p>
+<p>Memory Usage: <%= (totalmem - freemem) %>GiB used</p>
+<p>Average Load: <%= loadavg %></p>
+<p>CPU Count: <%= cpus %></p>
+
+<!-- This would be perfect for Docker manipulation: https://github.com/apocas/dockerode (container.stats)
+        With this, I expect an Object looking something like a Container object from that library. In a list.  -->
+<h1>Docker Instances</h1>
+<%
+if (!mods.dockerInformation) {
+    mods.dockerInformation = [
+        {
+            Names: ["Demo Container"],
+            Ports: [80, 443],
+            State: "Healthy",
+            NetworkSettings: {
+                Networks: {
+                    bridge: {
+                        IPAddress: "172.0.0.2"
+                    }
+                }
+            }
+        }
+    ];
+%>
+<p class="warning"> Demo mode is active. Consult server documentation for more information. (ERR: NO_DOCK_MOD) </p>
+<% } %>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Internal IP</th>
+        <th>Ports</th>
+        <th>State</th>
+    </tr>
+    <!-- https://docs.docker.com/engine/api/v1.37/#tag/Container/operation/ContainerList -->
+
+    <%
+    if (mods.dockerInformation) {
+        mods.dockerInformation.forEach(container => {
+            const name = container.Names[0]
+            const ports = container.Ports
+            const state = container.State
+            var ip;
+            if (container.NetworkSettings.Networks.bridge) {
+                ip = container.NetworkSettings.Networks.bridge.IPAddress
+            } else {
+                ip = "Not Accessible"
+            }
+
+    %>
+    <tr>
+        <td><%= name %></td>
+        <td><%= ip %></td>
+        <td><%= ports %></td>
+        <td><%= state %></td>
+    </tr>
+    <% })} %>
+</table>

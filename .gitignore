@@ -1,0 +1,47 @@
+# Development Environments
+venv/
+env/
+node_modules/
+
+# Build Environments
+dist/
+build/
+*build/
+build*/
+*build*/
+target/
+
+# Runtime Caches
+.cache
+__pycache__/
+
+
+# IDE Specifics
+.idea/
+.vs/
+.vscode/
+.fleet/
+.github/
+
+# Framework Specifics
+.astro/
+.next/
+
+# MacOS Specifics
+.DS_Store
+
+# Configuration Files
+config.py
+*.env
+
+# Testing Databases
+*.db
+*.sqlite3
+*.sqlite
+db.*
+
+# Large/Supplemental Files
+*.traineddata
+*.exe
+*.so
+*.dll

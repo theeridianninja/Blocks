@@ -1,0 +1,22 @@
+<nav>
+    <!-- All plugins will need to register their pages in a pages JSON object, which will be parsed here.
+            They must also create an endpoint for the page to exist on, and it will be imported below. -->
+    <img class="logo" src="assets/logo.svg">
+    <a href="/">Dashboard</a>
+    <a href="/plugins">Plugins</a>
+    <% if (!pages) {
+        var pages = []
+    } %>
+    <% for (const page in pages) { %>
+        <a href="<%= page.href %>"><%= page.name %></a>
+    <% } %>
+</nav>
+<main>
+    <!-- Basically, just send the route href and if the extension is written correctly, this will work. Otherwise,
+            404 error                                                                                           -->
+
+    <% if (!page) {
+        var page = "404"
+    } %>
+    <%- include('../pages/' + page + '.ejs') -%>
+</main>

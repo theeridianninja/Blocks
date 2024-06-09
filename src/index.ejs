@@ -1,0 +1,16 @@
+<!-- In the backend, the user's authentication must be processed and a variable must be set
+        SERVER SIDE to declare that the authentication is, in fact, valid.              -->
+
+<html lang="en-us">
+<%- include('components/head.ejs'); -%>
+<body>
+<% if (!authenticationValid) {
+    var authenticationValid = false
+} %>
+<% if(authenticationValid){ %>
+    <%- include('components/layout.ejs'); -%>
+<% }  else { %>
+    <%- include('pages/login.ejs'); -%>
+<% } %>
+</body>
+</html>

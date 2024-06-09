@@ -1,9 +1,4 @@
 {
-  "scripts": {
-    "start": "node src/index.js"
-  },
-  "author": "Logic Kenzie",
-  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.1",
     "cookie-parser": "^1.4.6",

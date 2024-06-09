@@ -1,0 +1,73 @@
+<!-- In the backend, the user's authentication must be processed and a variable must be set
+SERVER SIDE to declare that the authentication is, in fact, valid.              -->
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Blocks Administration</title>
+    <meta content="Blocks Administration" name="application-name"/>
+    <meta content="noindex,nofollow" name="robots">
+    <link href="assets/favicon.png" rel="shortcut icon" type="image/ico"/>
+    <link href="assets/styles.css" rel="stylesheet" type="text/css"/>
+    <meta content="true" name="HandheldFriendly">
+</head>
+<body>
+
+
+<nav>
+    <!-- All plugins will need to register their pages in a pages JSON object, which will be parsed here.
+    They must also create an endpoint for the page to exist on, and it will be imported below. -->
+    <img class="logo" src="assets/logo.svg">
+    <a href="/">Dashboard</a>
+    <a href="/plugins">Plugins</a>
+
+
+</nav>
+<main>
+    <!-- Basically, just send the route href and if the extension is written correctly, this will work. Otherwise,
+    404 error                                                                                           -->
+
+    <!-- I was picturing some basic information about the system here, maybe some charts? -->
+    <!-- For the API, literally just send os.freemem, os.loadavg, os.totalmem, os.cpus, and os.hostname all into an
+    object with the same names                                                                              -->
+    <h1>Host Details</h1>
+
+    <p class="warning"> Demo mode is active. Consult server documentation for more information. (ERR: NO_OS_MOD) </p>
+
+
+    <p>System Memory: 3GiB out of 4GiB available</p>
+    <p>Memory Usage: 1GiB used</p>
+
+
+    <p>Average Load: 25%</p>
+
+
+    <p>CPU Count: 4</p>
+
+    <!-- This would be perfect for Docker manipulation: https://github.com/apocas/dockerode (container.stats)
+    With this, I expect an Object looking something like a Container object from that library. In a list.  -->
+    <h1>Docker Instances</h1>
+
+    <p class="warning"> Demo mode is active. Consult server documentation for more information. (ERR: NO_DOCK_MOD) </p>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Internal IP</th>
+            <th>Ports</th>
+            <th>State</th>
+        </tr>
+        <!-- https://docs.docker.com/engine/api/v1.37/#tag/Container/operation/ContainerList -->
+
+        <tr>
+            <td>Demo Container</td>
+            <td>172.0.0.2</td>
+            <td>80,443</td>
+            <td>Healthy</td>
+        </tr>
+
+    </table>
+</main>
+</body>
+</html>
